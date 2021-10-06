@@ -186,50 +186,114 @@ Find all the info you need in the man-pages. Make sure to comment the commands y
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ The free command
+### ✅ The free command
 
 *Describe in your own words what the `free` command does. Give an example and a partial output.*
 
-### ❌ The id command
+It gives an overview of the used and free memory, but also other details such as shared, buffer and available memory. It is presented in kilobytes.
+
+|:|total| used | free | shared| buff/cache | available|
+| Mem: | 16594724 | 7323652 | 9041720 | 17720 | 229352 | 9137340 |
+| Swap: | 50331648 | 64236 | 50267412 |
+
+### ✅ The id command
 
 *Describe in your own words what the `id` command does. Give an example and a partial output.*
 
-### ❌ The tree command
+Gives information about the user that is currently using the system.
+
+uid=1000(sirine) gid=1000(sirine) groups=1000(sirine),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),117(netdev)
+
+### ✅ The tree command
 
 *Describe in your own words what the `tree` command does. How do you list all subdirectories too? How can you only include directories? If the `tree` command is not available on your system you can install it using `sudo apt install tree`*
 
-### ❌ The which command
+It lists all the directories in a easily readable (tree) format. You can add -a to view subdirectories and -d to view directories only.
+
+subdirectories included example:
+.
+├── .bash_history
+├── .bash_logout
+├── .bashrc
+├── .landscape
+│   └── sysinfo.log
+├── .lesshst
+├── .motd_shown
+├── .profile
+└── .sudo_as_admin_successful
+
+### ✅ The which command
 
 *Describe in your own words what the `which` command does. What is the result for `pwd` ?*
 
-### ❌ The file command
+Which displays the pathnames that are executed in the current environment. The pwd displays the path to the currently used environment. Result:
+/usr/bin/pwd
+
+### ✅ The file command
 
 *Describe in your own words what the `file` command does. What is the result for `~/.bashrc` ?*
 
-### ❌ The type command
+File displays which type the specified file is. Result: ASCII text
+
+### ✅ The type command
 
 *Describe in your own words what the `type` command does. What is the result for `ls` and what is the result for `g++` ?*
 
-### ❌ Counting lines and words
+Type displays information about a command, e.g. if it's a shell built-in, function, alias, file or keyword. ls is an alias for 'ls --color=auto', g++ is '/usr/bin/g++'
+
+### ✅ Counting lines and words
 
 *What command can be used to count lines and words in text? Give an example and explain the output.*
 
-### ❌ The wget command
+wc -l to count lines, wc -w to count words
+Example:
+wc -lw ~/.bashrc
+117  518 /home/sirine/.bashrc
+
+### ✅ The wget command
 
 *How can you download a file from the Internet using the command line?. Find a file online to use it on and demonstrate its usage.*
 
-### ❌ The dmesg command
+You can download files from the internet with the wget command.
+Example:
+wget https://linux-essentials.netlify.app/
+--2021-09-30 13:01:56--  https://linux-essentials.netlify.app/
+Resolving linux-essentials.netlify.app (linux-essentials.netlify.app)... 206.189.58.26, 18.192.76.182, 2a05:d014:275:cb00:c26c:5b6d:e2c8:e5a, ...
+Connecting to linux-essentials.netlify.app (linux-essentials.netlify.app)|206.189.58.26|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html                        [ <=>                                           ]  14.56K  --.-KB/s    in 0.01s
+
+2021-09-30 13:01:58 (1.12 MB/s) - ‘index.html’ saved [14913]
+
+### ✅ The dmesg command
 
 *Describe in your own words what the `dmesg` command does. Give an example and a partial output.*
 
-### ❌ Checksums
+This command can be used (with options) to control or print the kernel ring buffer.
+Example:
+[    0.015364]  Microsoft 4.4.0-19041.1237-Microsoft 4.4.35
+[    0.064459] <3>init: (1) ERROR: ConfigInitializeCommon:570: Failed to mount /usr/lib/wsl/drive
+[    0.064463] : 19
+[    0.064559] <3>init: (1) ERROR: ConfigInitializeCommon:570: Failed to mount /usr/lib/wsl/lib
+[    0.064561] 19
+
+### ✅ Checksums
 
 *Go to the website of Raspberry Pi - [https://www.raspberrypi.org/software/operating-systems](https://www.raspberrypi.org/software/operating-systems) and download the Raspberry Pi OS image using the `wget` command line tool. Now check if the SHA-256 checksum complies with the one being advertised on the website.*
 
 *What tool did you use to calculate the checksum? Demonstrate its usage.*
 
+First installed the hashalot with `sudo apt install hashalot`, then `sha356sum` and the name of the file (2021-05-07-raspios-buster-armhf-lite.zip)
+
 *What is the use of this hash?*
 
-### ❌ The printenv command
+It checks if there were any errors while downloaded.
+
+### ✅ The printenv command
 
 *Describe in your own words what the `printenv` command does.*
+
+You can print your environment with this command.
