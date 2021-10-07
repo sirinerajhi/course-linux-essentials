@@ -297,3 +297,11 @@ It checks if there were any errors while downloaded.
 *Describe in your own words what the `printenv` command does.*
 
 You can print your environment with this command.
+
+### IP Address
+
+*Find the IP address of your WiFi interface. What command did you use?*
+
+### IP Address of Sivir Server
+
+*What is the IP address of the internal server `sivir.devbit.be`? Make sure you are connected to the `Devbit` network.*
