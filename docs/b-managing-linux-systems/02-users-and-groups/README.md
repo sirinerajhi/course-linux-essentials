@@ -276,16 +276,58 @@ You can check the result using `cat /etc/group`.
 
 ## Changing Passwords
 
-Own user
-Other users
+Changing passwords can be achieved using the `passwd` tool. A normal user may only change the password for their own account, while the superuser may change the password for any account.
 
-## Changing the User Shell
+So to change your own password you can use the `passwd` command without extra arguments.
 
-TODO
+```bash
+[bioboost@linux][~]$ passwd
+```
+
+::: output
+<pre>
+Changing password for bioboost.
+Current password: 
+New password: 
+Retype new password: 
+passwd: password updated successfully
+</pre>
+:::
+
+The superuser can change any account password by specifying the user as an argument. Note that the superuser does not have to know the original password to be able to change it:
+
+```bash
+[bioboost@linux][~]$ sudo passwd johhny
+```
+
+::: output
+<pre>
+New password: 
+Retype new password: 
+passwd: password updated successfully
+</pre>
+:::
+
+::: warning
+Make sure to specify the name of the account when setting a password of another user using `sudo` powers. If you `sudo passwd`, you are actually changing the password of the root user.
+:::
+
+<!-- ## Changing the User Shell -->
+
+<!-- TODO -->
 
 ## Locking a User Account
 
-TODO
+One can lock the password of a user account using `passwd -l`, however this does not disable the account. The user may still be able to login using another authentication token (like for example with an SSH key). To disable the account, administrators should use `usermod --expiredate 1`, effectively setting the account's expire date to Jan 2, 1970.
+
+So for example to lock the account of `john`:
+
+```bash
+passwd -l john
+usermod --expiredate 1 john
+```
+
+Note, that this will not even allow root to change to the user `john`.
 
 ## Removing a User
 
@@ -311,7 +353,19 @@ The primary group of an existing user cannot be removed.
 
 ## Adding User to Sudoers
 
-https://linuxize.com/post/how-to-add-user-to-sudoers-in-ubuntu/
+The simplest option is to add the user to the `sudo` group specified in the sudoers file. By default, on Debian based distributions like Ubuntu and Linux Mint, members of the `sudo` group are granted with sudo access.
+
+```bash
+usermod -aG sudo <user>
+```
+
+::: tip admin vs sudo group
+Administrators are added to the `sudo` group, but the `admin` group is supported for backward compatibility. From the release notes:
+
+> Up until Ubuntu 11.10, administrator access using the `sudo` tool was granted via the `admin` Unix group. In Ubuntu 12.04, administrator access will be granted via the `sudo` group. This makes Ubuntu more consistent with the upstream implementation and Debian. For compatibility purposes, the `admin` group will continue to provide sudo/administrator access in 12.04.
+:::
+
+<!-- https://linuxize.com/post/how-to-add-user-to-sudoers-in-ubuntu/ -->
 
 ## Challenges
 
@@ -330,3 +384,21 @@ Mark challenges using a ✅ once they are finished.
 ### ❌ Difference false and nologin
 
 *Some user entries are showing `/bin/false` as the shell command. Do some research and explain what the difference is with `/usr/sbin/nologin`.*
+
+### ❌ The auth.log file 
+
+*What does the file `/log/var/auth.log` track? Provide an example of a command that shows entries being added to the log after you executed the command. Include the entry here that was added to the file.*
+
+### ❌ Locking out Steve
+
+*Create a new user steve and set a password for the user. Login to the `steve` account using `su` to make sure it works.*
+
+*Now lock the user account and make sure there is no way anyone can login as `steve`, not even `root`*
+
+### ❌ Zsh Shell
+
+*Install the zsh shell on your system. Now change your own shell to `zsh`. Make sure to do this in such a way that a new session will also use `zsh`.*
+
+### ❌ Semester Account
+
+*Create a new account for an exchange student called `maggie`. Make sure the account can only be used until 31st of January of the next year. Basically only for this semester*.
