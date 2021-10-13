@@ -680,9 +680,16 @@ It failed because users can only add and change files in their home directory. W
 No file with that name was found. A backup was made of the first-of-many file.
 Command: cp first-of-many first-of-many.bak
 
-### ❌ Sym Linking
+### ✅ Sym Linking
 
 *What does the tool `ln` allow you to do? Use it to create such a link in your home directory called `secrets` to the file `/etc/passwd`. Now use the `cat` tool to open the file `secrets`. What do you see? What happened?*
+
+The 'ln' tool lets you create links between files. When the secrets file is opened you can see the content of the passwd file. The secrets file is a link tot the passwd file, in other words you can open this file from your own home directory now.
+
+Commands:
+
+* ln /etc/passwd secrets
+* cat secrets
 
 ### ✅ SD Card
 
