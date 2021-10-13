@@ -634,40 +634,58 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Authentication Log
+### ✅ Authentication Log
 
 *There is a file on the system that logs authentication changes and failures. Can you guess where it can be found? Provide the path to the file.*
 
-### ❌ Apt Source List
+Path: /var/log/auth.log
+
+### ✅ Apt Source List
 
 *The apt tool uses a configuration file which specifies in which repositories it should look for packages. Its called the apt `sources.list` file. Can you guess where it can be found? Provide the path to the file.*
 
-### ❌ Tmp Filesystem
+/etc/apt/sources.list
+
+### ✅ Tmp Filesystem
 
 *Create a file called `hello` in `/tmp`. Restart your linux distro using `reboot`. Where is the file? What happened?*
 
-### ❌ Timestamps
+The file does not exist anymore, because /tmp files persist not upon reboot.
+
+### ✅ Timestamps
 
 *Create a file called `first-of-many` in your home directory. Use `nano` to add some content to the file. Now list the details of the file such as the size and when it was last modified.*
 
-### ❌ No space for spaces
+Command: 'ls -l'
+Output: -rw-r--r-- 1 sirine sirine        27 Oct 13 13:26 first-of-many
+
+### ✅ No space for spaces
 
 *Try to create a file called `second try` (with the space included) using the command `touch second try` in your home directory. What happened? Why did this happen? How can you actually achieve creating a file with a space in its name?*
 
-### ❌ The root
+Two files were created, one named 'second' and another named 'try'. This happened because multiple files can be created/'touched' at once when listed after the touch command with a space between them. To create a file with spaces, use quotes: touch "second try".
+
+### ✅ The root
 
 *Try to create a directory `/backups` (under the root of the filesystem). Why is it failing?*
 
 *Now use `sudo` to create the directory. Try creating a file called `README.md` within this `/backups` directory. Can you do it? Why / Why not?*
 
-### ❌ Bash RC
+It failed because users can only add and change files in their home directory. Without the sudo prefix permission is denied, nut I could create the file with the sudo prefix. Same reason as why the directory could not be created first.
+
+### ✅ Bash RC
 
 *In your home directory you will find a file called `.bashrc`. Create a backup of that file called `.bashrc.bak`.*
+
+No file with that name was found. A backup was made of the first-of-many file.
+Command: cp first-of-many first-of-many.bak
 
 ### ❌ Sym Linking
 
 *What does the tool `ln` allow you to do? Use it to create such a link in your home directory called `secrets` to the file `/etc/passwd`. Now use the `cat` tool to open the file `secrets`. What do you see? What happened?*
 
-### ❌ SD Card
+### ✅ SD Card
 
 *Plugin an SD Card or a USB stick into you computer. Where can we find the actual block device? Where is the filesystem mounted? What is the difference between these two?*
+
+The device can be found under /media. The filesystem is mounted under /mnt. Media provides a location to mount removable data, mnt serves asa n organization mount point for file systems.

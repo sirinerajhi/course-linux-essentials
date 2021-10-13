@@ -373,32 +373,69 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ System user accounts
+### ✅ System user accounts
 
 *Try to login to the `daemon` system user account. Use `sudo su daemon`. What does it display as a message ? What application is outputting this message ? Run that application and prove it.*
 
-### ❌ Creating group with id
+Message: This account is currently not available. The account is locked and cannot be entered via a password.The shell is outputting this message. When checking the shadow file, there is a '*' in the password field.
+
+### ✅ Creating group with id
 
 *Create a group called `hackers` with the specific group id `1337`. Now create two users (students from the class) and add them both the group.*
+Commands:
 
-### ❌ Difference false and nologin
+* sudo addgroup --gid 1337 hackers
+* sudo adduser jerry
+* sudo adduser george
+* sudo adduser jerry hackers
+* sudo adduser george hackers
+
+Command to check if Jerry and George were added to hackers: cat /etc/group
+Output: hackers:x:1337:jerry,george
+
+### ✅ Difference false and nologin
 
 *Some user entries are showing `/bin/false` as the shell command. Do some research and explain what the difference is with `/usr/sbin/nologin`.*
 
-### ❌ The auth.log file 
+When '/bin/false' is set: the user will be logged out immediately when they try to log in. When '/usr/sbin/nologin' is set, a message will be displayed saying that the account is not available.
+Source: [https://dannyda.com/2020/10/30/difference-between-shell-bin-false-vs-usr-sbin-nologin-or-sbin-nologin/?__cf_chl_captcha_tk__=pmd_5OFeRCgC6eRq2VJxaGe7k0vTcx2i7GJJfX0d1i88WJY-1634121378-0-gqNtZGzNAzujcnBszQi9](https://dannyda.com/2020/10/30/difference-between-shell-bin-false-vs-usr-sbin-nologin-or-sbin-nologin/?__cf_chl_captcha_tk__=pmd_5OFeRCgC6eRq2VJxaGe7k0vTcx2i7GJJfX0d1i88WJY-1634121378-0-gqNtZGzNAzujcnBszQi9).
+
+### ✅ The auth.log file
 
 *What does the file `/log/var/auth.log` track? Provide an example of a command that shows entries being added to the log after you executed the command. Include the entry here that was added to the file.*
 
-### ❌ Locking out Steve
+Some research done as I did not find the auth.log file; under WSL it's not available because WSL does not run any services by default. Online I found that this file is used to keep logs of failed and successful logins and logs of processes for authentication.
+
+Source: [https://www.plesk.com/blog/featured/linux-logs-explained/](https://www.plesk.com/blog/featured/linux-logs-explained/).
+
+### ✅ Locking out Steve
 
 *Create a new user steve and set a password for the user. Login to the `steve` account using `su` to make sure it works.*
 
 *Now lock the user account and make sure there is no way anyone can login as `steve`, not even `root`*
 
-### ❌ Zsh Shell
+Commands:
+
+* sudo adduser steve
+* su steve
+* (exit)
+* sudo passwd -l steve
+* sudo usermod --expiredate 1 steve
+
+### ✅ Zsh Shell
 
 *Install the zsh shell on your system. Now change your own shell to `zsh`. Make sure to do this in such a way that a new session will also use `zsh`.*
 
-### ❌ Semester Account
+Commands:
+
+* sudo apt install zsh
+* chsh -s $(which zsh)
+
+### ✅ Semester Account
 
 *Create a new account for an exchange student called `maggie`. Make sure the account can only be used until 31st of January of the next year. Basically only for this semester*.
+
+Commands:
+
+* sudo adduser maggie
+* sudo usermod --expiredate 2022-01-31 maggie

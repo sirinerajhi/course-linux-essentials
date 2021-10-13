@@ -283,7 +283,7 @@ Mark challenges using a ✅ once they are finished.
 
 nmap -sv (?)
 
-### ❌ NodeJS
+### ✅ NodeJS
 
 *Install `snap` using `apt`. Next use `snap` to install `nodejs`.*
 
@@ -291,6 +291,13 @@ nmap -sv (?)
 
 ```js
 console.log("Hello World from JavaScript");
+```
+
+Could not install nodejs; output:
+
+```text
+Interacting with snapd is not yet supported on Windows Subsystem for Linux.
+This command has been left available for documentation purposes only.
 ```
 
 ### ❌ Dhcpdump
