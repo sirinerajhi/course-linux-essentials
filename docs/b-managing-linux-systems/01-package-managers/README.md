@@ -281,9 +281,9 @@ Mark challenges using a ✅ once they are finished.
 
 *Port scan the server `sivir.devbit.be`. Make sure you are connected to the `Devbit` network. What services are running on this machine?*
 
-nmap -sv (?)
+Tried: "nmap -sV"
 
-### ✅ NodeJS
+### ✅❌ NodeJS
 
 *Install `snap` using `apt`. Next use `snap` to install `nodejs`.*
 
@@ -304,6 +304,10 @@ This command has been left available for documentation purposes only.
 
 *Install the `dhcpdump` and try to capture some DHCP traffic in the network. Work together with another student and try to capture the DHCP request of his/her laptop. Find out what the MAC Address is and check it using the `ip` or `ipconfig` tool.*
 
-### ❌ MQTT
+(installed dhcpdump)
+
+### ✅ MQTT
 
 *Find a command line tool that allows you to publish messages to an MQTT broker. Use it to send your name to the topic `linux/students`. Use the broker `mqtt.devbit.be`.*
+
+Command: mosquitto_pub -h mqtt.devbit.be -t linux/students -m "sirine rajhi"
