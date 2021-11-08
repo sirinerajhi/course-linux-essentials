@@ -604,11 +604,27 @@ Solve the challenges by creating small bash scripts. Place the bash scripts here
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Log the Date
+### ✅ Log the Date
 
 *Create a script that output the date every 10 seconds. Use the `sleep` command to wait between calls to the `date` command.*
 
-### ❌ Available Memory
+script:
+
+```text
+#!/usr/bin/env bash
+
+today=`date +%F`
+
+while [ true ]
+do
+ echo "Today is ${today}."
+ sleep 10s
+done
+```
+
+First the date is saved in a variable, then with a while loop (which will go forever or until Ctrl + C is entered) the date will be outputted via the echo command. When the date is outputted the system will 'sleep' for 10 seconds before looping again and showing the date again.
+
+### ✅ Available Memory
 
 *Output the available system memory together with the current date in the following format:*
 
@@ -618,7 +634,16 @@ Mark challenges using a ✅ once they are finished.
 
 *The available memory can be found in the file `/proc/meminfo`. Use the `grep` tool to filter out the line with MemAvailable.*
 
-### ❌ Fetching Github Keys
+script:
+
+```text
+#!/usr/bin/env bash
+today=`date`
+MEMINFO=`grep "MemFree" /proc/meminfo`
+echo "[${today}] ${MEMINFO}"
+```
+
+### ✅ Fetching Github Keys
 
 *Create a script that fetches the public SSH keys of a user on GitHub and displays them in the terminal. This can be accomplished by using the curl tool to access the endpoint `https://github.com/<username>.keys`, where `<username>` is an existing github username.*
 
@@ -639,10 +664,35 @@ Fetching Keys
 ...
 ```
 
+script:
+
+```text
+#!/usr/bin/env bash
+echo "Please enter your username: "
+read username
+KEYS=`curl https://github.com/${username}.keys`
+echo "Fetching keys"
+echo "..."
+echo ${KEYS}
+```
+
 ### ❌ DHCP Traffic
 
 *Create a script that filters DHCP network traffic and outputs matching MAC-Addresses, IP-Addresses and Hostnames.*
 
-### ❌ Backups
+(With tcpdump error; command: tcpdump -i Wi-Fi → socket type not supported)
+
+### ✅ Backups
 
 *Choose a directory on your system (best to choose one in your home-dir). Create a script that archives this directory in a `.tar.gz` tarball file. Add a timestamp in the name of the output file.*
+
+script:
+
+```text
+#!/usr/bin/env bash
+HOUR=`date +%H`
+MIN=`date +%M`
+SEC=`date +%S`
+TIME="${HOUR}.${MIN}.${SEC}"
+tar cf bash_test.${TIME}.tar.gz /home/sirine/bash_test/
+```
