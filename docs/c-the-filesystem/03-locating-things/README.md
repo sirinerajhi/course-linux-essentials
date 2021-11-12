@@ -327,7 +327,7 @@ man: /usr/share/info
 *Use the `whereis` tool to determine the location of the `find` binary.*
 
 ```commands & output
-whereis -l find
+whereis find
 
 find: /usr/bin/find /mnt/c/Windows/system32/find.exe /mnt/c/Program Files/Git/usr/bin/find.exe /usr/share/man/man1/find.1.gz /usr/share/info/find.info-1.gz /usr/share/info/find.info-2.gz /usr/share/info/find.info.gz
 ```
@@ -397,13 +397,18 @@ find /etc -name "*system*.conf" 2>/dev/null
 /etc/systemd/system.conf
 ```
 
-#### ❌ User Readable Files
+#### ✅ User Readable Files
 
 *What option can we use on `find` to make sure the current user can read the file? Don't use the `-perm` option. There is a better option. Give a nice example.*
 
-Example:
+This can be achieved with the '-readable' option, which shows the files that are readable by the current user.
+
+Example: When applying the -readable option to the command "find / -readable 2>/dev/null", it shows all the files that the current user can read.
 
 ```command
+find / -readable 2>/dev/null
+
+(output omitted because it was a very long list)
 
 ```
 
