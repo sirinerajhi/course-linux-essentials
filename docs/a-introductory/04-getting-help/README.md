@@ -227,7 +227,7 @@ subdirectories included example:
 
 *Describe in your own words what the `which` command does. What is the result for `pwd` ?*
 
-Which displays the pathnames that are executed in the current environment. The pwd displays the path to the currently used environment. Result:
+Which displays the path to the binary file of a specified command; only for commands that can be executed by the current user. The pwd displays the path to the currently used environment. Result:
 /usr/bin/pwd
 
 ### ✅ The file command
