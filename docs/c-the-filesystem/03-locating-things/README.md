@@ -3,8 +3,6 @@ description: Searching for and finding files is an important skill of any linux 
 title: Locating Things
 ---
 
-<!-- This chapter should probable be placed after 06 - the filesystem -->
-
 # Locating Things
 
 As a beginning Linux user it is not easy to find your way through the structure of the filesystem. Being able to search for binaries and other files will bring you a long way. Linux has several tools available to make this task less daunting.
@@ -20,7 +18,7 @@ If you get the error `command not found` you may need to install the `locate` pa
 The serious downside of this technique is that recently created files might not have been indexed yet and may not even show up in your search result. It may also may list files that have already been removed from the system.
 
 ```bash
-[bioboost@linux][~]$ locate dhcp
+locate dhcp
 ```
 
 ::: output
@@ -46,7 +44,7 @@ The `$PATH` environment variable contains a list of the directories where linux 
 :::
 
 ```bash
-[bioboost@linux][~]$ whereis g++
+whereis g++
 ```
 
 ::: output
@@ -60,7 +58,7 @@ As an extra, `whereis` will also display the location of the source files and th
 The easiest way to know what paths `whereis` is looking in, just add the `-l` listing option.
 
 ```bash
-[bioboost@linux][~]$ whereis -l g++
+whereis -l g++
 ```
 
 ::: output
@@ -84,7 +82,7 @@ g++: /usr/bin/g++ /usr/share/man/man1/g++.1.gz
 The `which` command only shows the path to a binary that can be found in the `$PATH` environment variable. This means that it can only be used to find commands that can be executed from the terminal by the current user.
 
 ```bash
-[bioboost@linux][~]$ which g++
+which g++
 ```
 
 ::: output
@@ -120,7 +118,7 @@ The basic syntax for using the `find` command is: `find [starting-point...] [exp
 Below is a basic example that searches the `/etc` directory and all it's subdirectories for a file called `passwd`.
 
 ```bash
-[bioboost@linux][~]$ find /etc -name passwd
+find /etc -name passwd
 ```
 
 ::: output
@@ -142,7 +140,7 @@ When searching system-wide for files using `find` you will get a lot of `Permiss
 2. Redirect the errors (standard error stream) to `/dev/null`, basically throwing them away: `find /etc -name passwd 2>/dev/null`. More about redirection later.
 
 ```bash
-[bioboost@linux][~]$ find /etc -name passwd 2>/dev/null
+find /etc -name passwd 2>/dev/null
 ```
 
 ::: output
@@ -168,7 +166,7 @@ When using wildcards it is important to surround the search criteria with double
 The next example fill search for files in the `/etc` directory that contain the **keyword** `pass`.
 
 ```bash
-[bioboost@linux][~]$ find /etc -name "*pass*" 2>/dev/null
+find /etc -name "*pass*" 2>/dev/null
 ```
 
 ::: output
@@ -190,7 +188,7 @@ The next example fill search for files in the `/etc` directory that contain the 
 The following example performs a system-wide **search for a directory** that contains the word `bash`. This can be achieved by using the search criteria `-type` set to `d` for directory.
 
 ```bash
-[bioboost@linux][~]$ find / -name "*bash*" -type d 2>/dev/null
+find / -name "*bash*" -type d 2>/dev/null
 ```
 
 ::: output
@@ -213,7 +211,7 @@ The following `find` command will search for a file:
 * and was modified in the last `24h`
 
 ```bash
-[bioboost@linux][~]$ find ~/projects -user bioboost -name "README.md" -size -100k -mtime 0 2>/dev/null
+find ~ -user bioboost -name "README.md" -size -100k -mtime 0 2>/dev/null
 ```
 
 ::: output
@@ -227,7 +225,7 @@ The following `find` command will search for a file:
 For the hardcore users, `find` can also execute commands for each file found using the `-exec` argument. For example, the following search will perform a long listing with human readable output for files that are bigger than `500MB` and belong to the user `bioboost`.
 
 ```bash
-[bioboost@linux][~]$ find / -size +500M -user bioboost 2>/dev/null -exec ls -lh '{}' \;
+find / -size +500M -user bioboost 2>/dev/null -exec ls -lh '{}' \;
 ```
 
 Let's dissect this command:
@@ -253,3 +251,193 @@ Let's dissect this command:
 ::: tip explainshell.com
 Try copy pasting this command in [explainshell.com](https://explainshell.com/) and enjoy the beauty of it all.
 :::
+
+## Challenges
+
+Try to solve the challenges without using google. Better to use the man-pages to find the information you need.
+
+Mark challenges using a ✅ once they are finished.
+
+### ✅ Locate
+
+*Install the `locate` command and update the index database.*
+
+*Locate the following files on your system:*
+
+* `sudoers.dist`
+* the configuration file `ssh_config`
+* `auth.log`
+
+```commands & output
+locate sudoers.dist
+locate ssh_config
+
+(auth.log does not exist in WLS - see explanation under "users & groups challenges")
+```
+
+### ✅ Python man-pages
+
+*Use the `whereis` tool to determine the location of the man-pages of `python`.*
+
+```commands & output
+whereis -l python
+
+man: /usr/share/man/cs
+man: /usr/share/man/da
+man: /usr/share/man/de
+man: /usr/share/man/es
+man: /usr/share/man/fi
+man: /usr/share/man/fr
+man: /usr/share/man/gl
+man: /usr/share/man/hr
+man: /usr/share/man/hu
+man: /usr/share/man/id
+man: /usr/share/man/it
+man: /usr/share/man/ja
+man: /usr/share/man/ko
+man: /usr/share/man/man1
+man: /usr/share/man/man2
+man: /usr/share/man/man3
+man: /usr/share/man/man4
+man: /usr/share/man/man5
+man: /usr/share/man/man6
+man: /usr/share/man/man7
+man: /usr/share/man/man8
+man: /usr/share/man/man9
+man: /usr/share/man/nl
+man: /usr/share/man/pl
+man: /usr/share/man/pt
+man: /usr/share/man/pt_BR
+man: /usr/share/man/ro
+man: /usr/share/man/ru
+man: /usr/share/man/sk
+man: /usr/share/man/sl
+man: /usr/share/man/sr
+man: /usr/share/man/sv
+man: /usr/share/man/tr
+man: /usr/share/man/zh
+man: /usr/share/man/zh_CN
+man: /usr/share/man/zh_TW
+man: /usr/share/info
+
+```
+
+### ✅ Find binary
+
+*Use the `whereis` tool to determine the location of the `find` binary.*
+
+```commands & output
+whereis -l find
+
+find: /usr/bin/find /mnt/c/Windows/system32/find.exe /mnt/c/Program Files/Git/usr/bin/find.exe /usr/share/man/man1/find.1.gz /usr/share/info/find.info-1.gz /usr/share/info/find.info-2.gz /usr/share/info/find.info.gz
+```
+
+### ✅ Which
+
+*What is the location of the following commands for the current user:*
+
+* `passwd`
+* `locate`
+* `fdisk`
+
+*Why are the location of `passwd` and `fdisk` different? What is `fdisk` used for?*
+
+```commands & output
+which passwd
+/usr/bin/passwd
+
+which locate
+/usr/bin/locate
+
+which fdisk
+/usr/sbin/fdisk
+```
+"fdisk" is used for manipulation of the disk partition table. A partition table is a record of the divisions of one or more logical disks.
+
+This command is not for regular users, so it is stored in sbin instead of bin. "passwd" can be used by regular users so it is stored in bin.
+
+### Use find for the following challenges
+
+Make sure to redirect the `permission denied` errors to `/dev/null` for all searches unless specified otherwise.
+
+#### ✅ kernel.log
+
+*Find the file `kernel.log`.*
+
+```commands & output
+find / -name kernel.log 2>/dev/null
+
+(no output, everything "permission denied")
+```
+
+#### ✅ .bashrc
+
+*Find the files `.bashrc`.*
+
+```commands & output
+find / -name ".bashrc" 2>/dev/null
+
+/etc/skel/.bashrc
+/home/barry/.bashrc
+/home/george/.bashrc
+/home/jerry/.bashrc
+/home/maggie/.bashrc
+/home/ritch/.bashrc
+/home/sirine/.bashrc
+/home/steve/.bashrc
+```
+
+#### ✅ System Configuration Files
+
+*Search for files that end with the extension `.conf` and contain a filename with the keyword `system` in the `/etc` directory.*
+
+```commands & output
+find /etc -name "*system*.conf" 2>/dev/null
+
+/etc/systemd/system.conf
+```
+
+#### ❌ User Readable Files
+
+*What option can we use on `find` to make sure the current user can read the file? Don't use the `-perm` option. There is a better option. Give a nice example.*
+
+Example:
+
+```command
+
+```
+
+#### ✅ Altered Log Files
+
+*Find all log files in `/var/log` that were modified in the last 24 hours. Make sure to only include files and not directories. Now extend the command to perform a long listing human readable `ls` for each file.*
+
+```commands & output
+find /var/log -mtime -1 -type f 2>/dev/null
+
+/var/log/alternatives.log
+/var/log/apt/eipp.log.xz
+/var/log/apt/history.log
+/var/log/apt/term.log
+/var/log/dpkg.log
+
+find /var/log -mtime -1 -type f 2>/dev/null -exec ls -lh {} \;
+
+-rw-r--r-- 1 root root 12K Nov 12 09:13 /var/log/alternatives.log
+-rw-r--r-- 1 root root 26K Nov 12 09:13 /var/log/apt/eipp.log.xz
+-rw-r--r-- 1 root root 22K Nov 12 09:16 /var/log/apt/history.log
+-rw-r----- 1 root adm 113K Nov 12 09:16 /var/log/apt/term.log
+-rw-r--r-- 1 root root 223K Nov 12 09:16 /var/log/dpkg.log
+
+```
+
+#### ✅ Steal All Logs
+
+*Create a directory `logs` in `/tmp` and copy all `*.log` files you can find on the system to that location.*
+
+```commands & output
+find / -name "*.log" 2>/dev/null -exec cp {} /tmp/logs \;
+
+(output omitted: very long list)
+```
+
+<!-- Extra: make it a tar file -->
