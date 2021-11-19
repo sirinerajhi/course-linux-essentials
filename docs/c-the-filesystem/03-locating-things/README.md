@@ -446,3 +446,24 @@ find / -name "*.log" 2>/dev/null -exec cp {} /tmp/logs \;
 ```
 
 <!-- Extra: make it a tar file -->
+
+#### ✅ Markdown README files
+
+*Find all `README.md` files on your system. Can you make it so the case of the filename does not matter? In other words, you should also be able to find `readme.md`, `Readme.md`, `readme.MD`, ...*
+
+```commands & output
+find / -iname readme.md -mount  2>/dev/null
+
+(partial output)
+/usr/share/doc/libcbor0.6/README.md
+/usr/share/doc/libcurlpp0/Readme.md
+/usr/share/doc/libfuse2/README.md
+/usr/share/doc/libpcap0.8/README.md
+/usr/share/doc/libtasn1-6/README.md
+/usr/share/doc/mosquitto/readme.md
+/usr/share/doc/psmisc/README.md
+/usr/share/doc/python3-httplib2/README.md
+/usr/share/doc/python3-json-pointer/README.md
+/usr/share/doc/python3-jsonpatch/README.md
+/usr/share/doc/python3-requests/README.md
+```
