@@ -432,11 +432,15 @@ Can be found under: /home/sirine/dotfiles/install
 
 (Located in the .bashrc file)
 
+Command: neofetch
+
 ### ✅ @vue/cli
 
 *Add @vue/cli as a global install to your script.*
 
 (Added in bashrc file)
+
+Command: npm  install -g @vue/cli
 
 ### ❌ Conda
 
@@ -464,3 +468,5 @@ sudo mv gcc-arm-embedded /opt
 *Create an alias `mbedc` that compiles an mbed project, flashes the target and starts up the serial terminal at a baudrate of 115200.*
 
 Alias added in the bashrc file.
+
+Command: alias mbedc='mbed compile; mbed compile -f; screen /dev/ttyS0 115200,cs8'
