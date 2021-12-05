@@ -297,11 +297,13 @@ cowsay "I am a cow"                                                             
                 ||     ||
 ```
 
-### ❌ Nmap
+### ✅❌ Nmap
 
 *Install the `nmap` package using `apt`.*
 
 *Port scan the server `sivir.devbit.be`. Make sure you are connected to the `Devbit` network. What services are running on this machine?*
+
+Installed with: sudo apt install nmap
 
 Warning received for nmap:
 
@@ -341,11 +343,11 @@ Interacting with snapd is not yet supported on Windows Subsystem for Linux.
 This command has been left available for documentation purposes only.
 ```
 
-### ❌ Dhcpdump
+### ✅❌ Dhcpdump
 
 *Install the `dhcpdump` and try to capture some DHCP traffic in the network. Work together with another student and try to capture the DHCP request of his/her laptop. Find out what the MAC Address is and check it using the `ip` or `ipconfig` tool.*
 
-(installed dhcpdump with sudo apt-get install -y dhcpdump.)
+installed dhcpdump with: sudo apt-get install -y dhcpdump. Received 'Socket type not supported' errors when scanning the network.
 
 ### ✅ MQTT
 
