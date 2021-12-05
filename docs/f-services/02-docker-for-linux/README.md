@@ -253,11 +253,25 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Docker on the Pi
+### ✅ Docker on the Pi
 
 *Install docker and your raspberry pi and make sure the hello-world runs*.
 
 <!-- documenteer wat gedaan is geweest in de les -->
+
+Installed with:
+curl -sSL https://get.docker.com | sh
+
+'sh' downloads a script and passes it to the bourne shell.
+
+To auto-start:
+sudo systemctl enable docker
+
+To start Docker daemon:
+sudo systemctl start docker
+
+To test hello world:
+docker run hello-world
 
 ### ❌ Hello API from RPi
  
@@ -266,12 +280,17 @@ Mark challenges using a ✅ once they are finished.
 *You can find the repository at [https://github.com/BioBoost/linux-essentials-docker-hello-node-api](https://github.com/BioBoost/linux-essentials-docker-hello-node-api)*.
 
 <!-- Nog niet doen voorlopig -->
+(At the moment this should not be done yet)
 
-### ❌ Node-RED on RPi
+### ✅ Node-RED on RPi
 
 *Setup a node-red service on your Raspberry Pi using docker. At what port is it available?*
 
 *Use the image [https://hub.docker.com/r/nodered/node-red](https://hub.docker.com/r/nodered/node-red)*.
 
-<!-- documenteer wat gedaan is geweest in de les --> 
+Full command: docker run --publish 4000:1880 --detach nodered/node-red
 
+- 'docker run': to start docker and run the nodered command
+- '--publish 4000:1880': to bring the nodered port (1880) outside on the 4000 port
+- 'detach': puts it as a background service
+- 'nodered/node-red': image to use for the nodered service
