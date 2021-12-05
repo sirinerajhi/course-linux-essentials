@@ -160,6 +160,8 @@ Mark challenges using a ✅ once they are finished.
 *Create a cron-job that will backup your user directory to a `tar.gz` archive file every day at a specific time. Choose the time yourself.*
 
 Commands:
+
 ```commands
 mkdir back_up                                                               // create destination for the backup
 59 23 * * 0 tar -zcvpf /home/sirine/back_up/backup.tar.gz /home/sirine/     // back up the sirine user directory every Sunday at 23:59.
+```
