@@ -269,11 +269,33 @@ Find all the info you need in the man-pages. Document the commands you used for 
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ Cowsay
+### ✅ Cowsay
 
 *Download the `.deb` package for `cowsay` and install it using `dpkg`. You can find the package at [https://packages.debian.org/sid/all/cowsay/download](https://packages.debian.org/sid/all/cowsay/download).*
 
 *Run it once it's installed. What does it do ?*
+
+Command:
+
+```command
+sudo dpkg --install ftp.uk.debian.org/debian
+```
+
+Did not work with dpkg, so I installed it with: sudo apt-get install -y cowsay
+
+With the 'cowsay' command you can specify a piece of text that will be displayed as if said by a cow
+
+```command and output
+cowsay "I am a cow"                                                                                             ok
+ ____________
+< I am a cow >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
 
 ### ❌ Nmap
 
@@ -281,7 +303,19 @@ Mark challenges using a ✅ once they are finished.
 
 *Port scan the server `sivir.devbit.be`. Make sure you are connected to the `Devbit` network. What services are running on this machine?*
 
-Tried: "nmap -sV"
+Warning received for nmap:
+
+```warning
+Warning: Nmap may not work correctly on Windows Subsystem for Linux.
+For best performance and accuracy, use the native Windows build from https://nmap.org/download.html#windows.
+Nmap version 7.80 ( https://nmap.org )
+Platform: x86_64-pc-linux-gnu
+Compiled with: liblua-5.3.3 openssl-1.1.1d nmap-libssh2-1.8.2 libz-1.2.11 libpcre-8.39 libpcap-1.9.1 nmap-libdnet-1.12 ipv6
+Compiled without:
+Available nsock engines: epoll poll select
+```
+
+Command to portscan the server: nmap -p sivir.devbit.be
 
 ### ✅❌ NodeJS
 
@@ -292,6 +326,13 @@ Tried: "nmap -sV"
 ```js
 console.log("Hello World from JavaScript");
 ```
+
+Commands:
+
+```commands
+sudo apt install snap
+sudo snap install nodejs
+``` 
 
 Could not install nodejs; output:
 
@@ -304,7 +345,7 @@ This command has been left available for documentation purposes only.
 
 *Install the `dhcpdump` and try to capture some DHCP traffic in the network. Work together with another student and try to capture the DHCP request of his/her laptop. Find out what the MAC Address is and check it using the `ip` or `ipconfig` tool.*
 
-(installed dhcpdump)
+(installed dhcpdump with sudo apt-get install -y dhcpdump.)
 
 ### ✅ MQTT
 
