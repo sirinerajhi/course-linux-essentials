@@ -139,7 +139,7 @@ Try to solve the challenges without using google. Better to use the man-pages to
 
 Mark challenges using a ✅ once they are finished.
 
-### ❌ I am Alive
+### ✅ I am Alive
 
 *Create a cron-job that will publish a message to the `mqtt.devbit.be` broker on the topic `linux/alive/<yourname>` every 15th minute of the day. You can use the `mosquitto_pub` command for this.*
 
@@ -147,7 +147,7 @@ Mark challenges using a ✅ once they are finished.
 15 * * * * mosquitto_pub -h mqtt.devbit.be -t linux/alive/sirinerajhi -m "i am alive"
 ```
 
-### ❌ My IP
+### ✅ My IP
 
 *Create a cron-job that will publish your raspberry pi's IP address to the `mqtt.devbit.be` broker on the topic `linux/ip/<yourname>` every minute. You can use the `mosquitto_pub` command for this.*
 
@@ -155,6 +155,11 @@ Mark challenges using a ✅ once they are finished.
 * * * * * mosquitto_pub -h mqtt.devbit.be -t linux/ip/sirinerajhi -m "172.16.240.3"
 ```
 
-### ❌ Backup Home
+### ✅ Backup Home
 
 *Create a cron-job that will backup your user directory to a `tar.gz` archive file every day at a specific time. Choose the time yourself.*
+
+Commands:
+```commands
+mkdir back_up                                                               // create destination for the backup
+59 23 * * 0 tar -zcvpf /home/sirine/back_up/backup.tar.gz /home/sirine/     // back up the sirine user directory every Sunday at 23:59.
